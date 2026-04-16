@@ -1,0 +1,53 @@
+/**
+ * React Router 导入说明：
+ * - BrowserRouter: 使用HTML5 History API保持UI与URL同步
+ * - Routes: 包含所有Route的容器组件
+ * - Route: 定义路由规则，将URL路径映射到组件
+ *
+ * React学习要点：
+ * 1. React使用声明式编程，描述UI应该是什么样子
+ * 2. 组件是React应用的基本构建块
+ * 3. 路由允许我们在单页应用中创建多个"页面"
+ */
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import UserList from './components/UserList'
+import UserDetail from './components/UserDetail'
+import './App.css'
+
+/**
+ * App组件 - 应用的根组件
+ *
+ * React学习要点：
+ * 1. 函数组件：现代React推荐的方式，使用函数定义组件
+ * 2. JSX：JavaScript的语法扩展，允许在JS中写HTML-like代码
+ * 3. 组件必须返回JSX并只返回一个根元素（如需要多个元素，用<>...</>或<div>包裹）
+ */
+
+function App() {
+  return (
+    // Router组件：提供路由上下文，必须包裹所有路由相关组件
+    <Router>
+      <div className="app">
+        {/* Routes组件：包含所有路由规则的容器 */}
+        <Routes>
+          {/**
+           * Route组件：定义单个路由
+           * path: URL路径
+           * element: 当路径匹配时显示的组件
+           *
+           * React Router学习要点：
+           * 1. 动态路由参数使用冒号前缀，如 :id
+           * 2. 路由按顺序匹配，精确匹配使用 exact 属性（或React Router v6的默认行为）
+           */}
+          <Route path="/" element={<UserList />} />
+          <Route path="/user/:id" element={<UserDetail />} />
+        </Routes>
+      </div>
+    </Router>
+  )
+}
+
+// 导出组件供其他文件使用
+// React学习要点：每个文件可以有一个默认导出（export default）
+export default App

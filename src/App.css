@@ -1,0 +1,330 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background: oklch(0.9816 0 0);
+  --foreground: oklch(0.1469 0 0);
+  --card: oklch(0.9911 0 0);
+  --card-foreground: oklch(0.1469 0 0);
+  --primary: oklch(0.6471 0.1978 259.2012);
+  --primary-foreground: oklch(1.0000 0 0);
+  --secondary: oklch(0.9683 0 0);
+  --secondary-foreground: oklch(0.5946 0 0);
+  --muted: oklch(0.9700 0 0);
+  --muted-foreground: oklch(0.5946 0 0);
+  --accent: oklch(0.9683 0 0);
+  --accent-foreground: oklch(0.6471 0.1978 259.2012);
+  --border: oklch(0.9288 0 0);
+  --radius: 0.5rem;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* User List Styles */
+.user-list {
+  width: 100%;
+}
+
+.user-list h1 {
+  margin-bottom: 2rem;
+  color: var(--foreground);
+}
+
+.search-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 300px;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-buttons button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-buttons button.active {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.add-user-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+}
+
+.add-user-btn:hover {
+  opacity: 0.9;
+}
+
+.new-user-form {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.new-user-form h2 {
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.new-user-form input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.form-buttons button:first-child {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.form-buttons button:last-child {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+}
+
+.user-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.user-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.user-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.user-card h3 {
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.user-card p {
+  margin-bottom: 0.5rem;
+  color: var(--muted-foreground);
+}
+
+.card-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.view-btn, .edit-btn, .delete-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  text-align: center;
+  flex: 1;
+}
+
+.view-btn {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.edit-btn {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.edit-form input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+/* User Detail Styles */
+.user-detail {
+  width: 100%;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: var(--muted);
+}
+
+.user-detail h1 {
+  margin-bottom: 2rem;
+  color: var(--foreground);
+}
+
+.detail-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.detail-card h2 {
+  margin-bottom: 1.5rem;
+  color: var(--foreground);
+}
+
+.detail-card p {
+  margin-bottom: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.detail-card strong {
+  color: var(--foreground);
+}
+
+.address, .company {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.address h3, .company h3 {
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 4rem;
+  color: var(--muted-foreground);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+
+  .search-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input {
+    min-width: 100%;
+  }
+
+  .filter-buttons {
+    justify-content: center;
+  }
+
+  .user-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-buttons {
+    flex-direction: column;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+}
