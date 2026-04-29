@@ -52,9 +52,9 @@ A React + React Router based user management application that demonstrates core 
 
 ## 技术栈 / Tech Stack
 
-- **React 18** - UI 框架 / UI Framework
-- **React Router v6** - 路由管理 / Routing
-- **Vite** - 构建工具和开发服务器 / Build tool and dev server
+- **React 19** - UI 框架 / UI Framework
+- **React Router v7** - 路由管理 / Routing
+- **Vite 8** - 构建工具和开发服务器 / Build tool and dev server
 - **Fetch API** - HTTP 请求 / HTTP Requests
 
 ---
@@ -91,7 +91,7 @@ A React + React Router based user management application that demonstrates core 
 ## 项目结构 / Project Structure
 
 ```
-react-project/
+react-learning/
 ├── public/
 │   ├── favicon.svg
 │   └── icons.svg
@@ -101,17 +101,30 @@ react-project/
 │   │   ├── react.svg
 │   │   └── vite.svg
 │   ├── components/
-│   │   ├── UserDetail.jsx    # 用户详情组件 / User detail component
-│   │   └── UserList.jsx       # 用户列表组件 / User list component
+│   │   ├── user/
+│   │   │   ├── UserDetail/
+│   │   │   │   └── index.jsx    # 用户详情组件
+│   │   │   └── UserList/
+│   │   │       ├── index.jsx     # 用户列表主组件
+│   │   │       ├── UserCard.jsx      # 用户卡片组件
+│   │   │       ├── FilterButtons.jsx # 筛选按钮组件
+│   │   │       ├── NewUserForm.jsx   # 新增用户表单
+│   │   │       ├── EditForm.jsx      # 编辑用户表单
+│   │   │       └── SearchBar.jsx     # 搜索栏组件
+│   │   └── common/
+│   │       └── ErrorBoundary.jsx # 错误边界组件
 │   ├── App.css                # 应用样式 / App styles
 │   ├── App.jsx                # 根组件 / Root component
 │   ├── index.css              # 全局样式 / Global styles
 │   └── main.jsx               # 应用入口 / App entry
+├── .vscode/
+│   └── settings.json          # VSCode 配置
+├── .editorconfig              # 代码格式规范
 ├── .gitignore
+├── .npmrc                     # npm 配置
 ├── eslint.config.js
 ├── index.html
 ├── package.json
-├── package-lock.json
 └── vite.config.js
 ```
 
@@ -122,7 +135,7 @@ react-project/
 ### 安装依赖 / Install Dependencies
 
 ```bash
-cd react-project
+cd react-learning
 npm install
 ```
 
@@ -142,6 +155,12 @@ npm run build
 
 构建产物将输出到 `dist` 目录 / Build output will be in the `dist` directory.
 
+### 代码检查 / Lint
+
+```bash
+npm run lint
+```
+
 ---
 
 ## API 数据源 / API Data Source
@@ -160,8 +179,8 @@ This project uses the free REST API from [JSONPlaceholder](https://jsonplacehold
 ## 学习建议 / Learning Path
 
 1. **从 App.jsx 开始** / **Start with App.jsx** - 了解 React Router 的基本配置 / Learn React Router basic configuration
-2. **阅读 UserList.jsx** - 学习 Hooks 使用、状态管理、事件处理 / Learn Hooks usage, state management, event handling
-3. **阅读 UserDetail.jsx** - 学习路由参数获取、条件渲染 / Learn route parameter retrieval, conditional rendering
+2. **阅读 components/user/UserList/index.jsx** - 学习 Hooks 使用、状态管理、事件处理 / Learn Hooks usage, state management, event handling
+3. **阅读 components/user/UserDetail/index.jsx** - 学习路由参数获取、条件渲染 / Learn route parameter retrieval, conditional rendering
 4. **尝试修改代码** / **Try modifying code** - 添加新功能或修改现有功能 / Add new features or modify existing ones
 5. **阅读代码注释** / **Read code comments** - 每个关键概念都有详细的中文注释说明 / Each key concept has detailed comments
 
@@ -169,69 +188,22 @@ This project uses the free REST API from [JSONPlaceholder](https://jsonplacehold
 
 ## 项目优化 / Project Optimization
 
-为了提高项目的可维护性、性能和用户体验，对项目进行了以下优化：
+### 1. 组件拆分 / Component Splitting
 
-### 1. 目录结构优化 / Directory Structure Optimization
+将 `UserList` 组件拆分为多个子组件：
+- `SearchBar` - 搜索功能
+- `FilterButtons` - 筛选功能
+- `UserCard` - 用户卡片
+- `NewUserForm` - 新增用户表单
+- `EditForm` - 编辑用户表单
 
-- 重新组织目录结构，按功能模块划分
-- 创建 `services` 目录，集中管理 API 调用
-- 创建 `hooks` 目录，存放自定义 Hooks
-- 创建 `utils` 目录，存放工具函数
-- 优化组件目录结构，按功能分类
+### 2. 目录结构优化 / Directory Structure Optimization
 
-### 2. API 服务层 / API Service Layer
-
-- 实现统一的 API 服务层，分离网络请求逻辑
-- 提供统一的错误处理机制
-- 简化组件代码，提高可维护性
-
-### 3. 自定义 Hooks / Custom Hooks
-
-- 创建 `useUsers` Hook，管理用户列表的状态和操作
-- 创建 `useUserDetail` Hook，管理用户详情的状态和操作
-- 复用业务逻辑，提高代码可维护性
-
-### 4. 组件拆分 / Component Splitting
-
-- 将 `UserList` 组件拆分为多个子组件：
-  - `SearchBar` - 搜索功能
-  - `FilterButtons` - 筛选功能
-  - `UserCard` - 用户卡片
-  - `EditForm` - 编辑表单
-  - `NewUserForm` - 新增用户表单
-- 提高组件的复用性和可维护性
-
-### 5. 错误处理 / Error Handling
-
-- 实现 `ErrorBoundary` 组件，捕获子组件的错误
-- 提供友好的错误提示界面
-- 提高应用的稳定性
-
-### 6. 表单验证 / Form Validation
-
-- 实现表单验证逻辑，确保数据的有效性
-- 显示友好的错误提示信息
-- 防止提交无效数据
-
-### 7. 用户体验优化 / User Experience Optimization
-
-- 添加加载状态显示
-- 添加动画效果，提升视觉体验
-- 实现响应式设计，适配不同屏幕尺寸
-- 优化按钮和交互元素的样式
-
-### 8. 代码质量 / Code Quality
-
-- 添加详细的代码注释
-- 遵循 React 最佳实践
-- 提高代码的可读性和可维护性
+- 按功能模块组织组件（`user/`、`common/`）
+- 统一的配置文件（`.editorconfig`、`.npmrc`、`.vscode/settings.json`）
 
 ---
 
-## 贡献 / Contributing
-
-欢迎提出问题和改进建议！/ Issues and suggestions are welcome!
-
-## 许可证 / License
+## License
 
 MIT License
