@@ -2,14 +2,23 @@
  * UserCard组件
  * 显示单个用户的信息和操作按钮
  * 
- * 优化说明：
- * 1. 组件化设计，提高代码复用性
- * 2. 独立管理单个用户卡片的UI逻辑
+ * React学习要点：
+ * 1. 组件通信: 通过props接收用户数据和回调函数
+ * 2. React Router: 使用Link组件进行导航
+ * 3. 事件处理: 通过onClick触发编辑和删除操作
+ * 4. 组件化设计: 独立管理单个用户卡片的UI逻辑
  */
 
 import { Link } from 'react-router-dom';
+import { User } from '../../../types';
 
-const UserCard = ({ user, onEdit, onDelete }) => {
+interface UserCardProps {
+  user: User;
+  onEdit: (user: User) => void;
+  onDelete: (userId: number) => void;
+}
+
+const UserCard = ({ user, onEdit, onDelete }: UserCardProps) => {
   return (
     <div className="user-card">
       <h3>{user.name}</h3>

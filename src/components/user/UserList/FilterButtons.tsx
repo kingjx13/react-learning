@@ -1,13 +1,19 @@
 /**
  * FilterButtons组件
- * 用户筛选功能
+ * 用户筛选功能组件
  * 
- * 优化说明：
- * 1. 组件化设计，提高代码复用性
- * 2. 独立管理筛选相关的UI逻辑
+ * React学习要点：
+ * 1. 条件渲染: 根据filterBy状态添加active类名
+ * 2. 事件处理: 通过onClick触发状态更新
+ * 3. 组件化设计: 独立管理筛选相关的UI逻辑
  */
 
-const FilterButtons = ({ filterBy, setFilterBy }) => {
+interface FilterButtonsProps {
+  filterBy: 'all' | 'username' | 'email';
+  setFilterBy: (value: 'all' | 'username' | 'email') => void;
+}
+
+const FilterButtons = ({ filterBy, setFilterBy }: FilterButtonsProps) => {
   return (
     <div className="filter-buttons">
       <button 

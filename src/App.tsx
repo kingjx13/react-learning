@@ -26,10 +26,8 @@ import './App.css'
  */
 
 function App() {
-  // 错误处理回调函数
-  const handleError = (error, errorInfo) => {
+  const handleError = (error: Error, errorInfo: { componentStack?: string }) => {
     console.error('App level error handler:', error, errorInfo);
-    // 这里可以添加错误上报逻辑，如发送到错误监控服务
   };
 
   return (

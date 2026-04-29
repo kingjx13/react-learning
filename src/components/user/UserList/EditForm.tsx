@@ -1,13 +1,24 @@
 /**
  * EditForm组件
- * 用户编辑表单
+ * 用户编辑表单组件
  * 
- * 优化说明：
- * 1. 组件化设计，提高代码复用性
- * 2. 独立管理编辑表单的UI逻辑
+ * React学习要点：
+ * 1. 受控表单: 表单值由state控制
+ * 2. 表单验证: 显示验证错误信息
+ * 3. 组件化设计: 独立管理编辑表单的UI逻辑
  */
 
-const EditForm = ({ user, editForm, setEditForm, errors, onSave, onCancel }) => {
+import { SimpleUserFormData, ValidationErrors } from '../../../types';
+
+interface EditFormProps {
+  editForm: SimpleUserFormData;
+  setEditForm: (form: SimpleUserFormData) => void;
+  errors: ValidationErrors;
+  onSave: () => void;
+  onCancel: () => void;
+}
+
+const EditForm = ({ editForm, setEditForm, errors, onSave, onCancel }: EditFormProps) => {
   return (
     <div className="edit-form">
       <div className="form-field">

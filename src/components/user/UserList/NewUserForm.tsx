@@ -1,13 +1,24 @@
 /**
  * NewUserForm组件
- * 添加新用户表单
+ * 添加新用户表单组件
  * 
- * 优化说明：
- * 1. 组件化设计，提高代码复用性
- * 2. 独立管理新用户表单的UI逻辑
+ * React学习要点：
+ * 1. 受控表单: 表单值由state控制
+ * 2. 表单验证: 显示验证错误信息
+ * 3. 组件化设计: 独立管理新用户表单的UI逻辑
  */
 
-const NewUserForm = ({ newUserForm, setNewUserForm, errors, onAdd, onCancel }) => {
+import { SimpleUserFormData, ValidationErrors } from '../../../types';
+
+interface NewUserFormProps {
+  newUserForm: SimpleUserFormData;
+  setNewUserForm: (form: SimpleUserFormData) => void;
+  errors: ValidationErrors;
+  onAdd: () => void;
+  onCancel: () => void;
+}
+
+const NewUserForm = ({ newUserForm, setNewUserForm, errors, onAdd, onCancel }: NewUserFormProps) => {
   return (
     <div className="new-user-form">
       <h2>Add New User</h2>
